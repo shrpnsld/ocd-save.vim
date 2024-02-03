@@ -15,7 +15,7 @@
 Contents                                                     *ocd-save-contents*
 
         Intro.......................................... |ocd-save-intro|
-        Configuration.................................. |ocd-save-usage|
+        Configuration.......................... |ocd-save-configuration|
         Commands.................................... |ocd-save-commands|
         License...................................... |ocd-save-license|
 

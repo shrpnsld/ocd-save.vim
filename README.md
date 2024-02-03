@@ -12,7 +12,7 @@ Use string `'shrpnsld/ocd-save.vim'` with your plugin manager and you're good to
 
 ### Excluding buffers
 
-You can disable autosave for specific buffers by setting up an exclusion list `g:ocd_save_exclude`. Each element in this list is a funcref (`:h funcref`) that accepts a buffer number as an argument and returns `1` (`:h TRUE`) if this buffer should not be autosaved.
+You can disable autosave for specific buffers by setting up an exclusion list `g:ocd_save_exclude`. Each element in this list is a funcref (`:h funcref`) that accepts a buffer number as an argument and returns `1` (`:h TRUE`) if this buffer *should not* be autosaved.
 
 #### Example:
 

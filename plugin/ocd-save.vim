@@ -21,12 +21,12 @@ function! s:HasEmptyName(buffer_number)
 	return bufname(a:buffer_number) ==# ''
 endfunction
 
-function! s:IsReadOnly(buffer_name)
-	return getbufvar(a:buffer_name, '&readonly')
+function! s:IsReadOnly(buffer_number)
+	return getbufvar(a:buffer_number, '&readonly')
 endfunction
 
-function! s:NotNormalBuffer(buffer_name)
-	return getbufvar(a:buffer_name, '&buftype') !=# ''
+function! s:NotNormalBuffer(buffer_number)
+	return getbufvar(a:buffer_number, '&buftype') !=# ''
 endfunction
 
 function! s:FileTypeIsGit(buffer_number)
