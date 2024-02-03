@@ -7,6 +7,16 @@ endif
 "
 " Utils
 
+function! s:ABuf()
+	let abuf = expand('<abuf>')
+	if abuf ==# ''
+		let buffer_number = 0
+	else
+		let buffer_number = str2nr(abuf)
+	end
+	return buffer_number != 0 ? buffer_number : bufnr()
+endfunction
+
 function! s:HasEmptyName(buffer_number)
 	return bufname(a:buffer_number) ==# ''
 endfunction
@@ -92,10 +102,10 @@ endfunction
 function! s:On()
 	augroup OcdSaveGlobal
 		autocmd!
-		autocmd BufAdd * call s:OnHere(str2nr(expand('<abuf>')))
-		autocmd BufDelete * call s:OffHere(str2nr(expand('<abuf>')))
-		autocmd OptionSet readonly,buftype call s:CheckAndToggleHere(str2nr(expand('<abuf>')))
-		autocmd BufWritePost * call s:OnHere(str2nr(expand('<abuf>')))
+		autocmd BufAdd * call s:OnHere(s:ABuf())
+		autocmd BufDelete * call s:OffHere(s:ABuf())
+		autocmd OptionSet readonly,buftype call s:CheckAndToggleHere(s:ABuf())
+		autocmd BufWritePost * call s:OnHere(s:ABuf())
 	augroup END
 
 	for info in getbufinfo()
