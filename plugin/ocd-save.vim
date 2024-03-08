@@ -51,6 +51,10 @@ if !exists('g:ocd_save_exclude')
 	let g:ocd_save_exclude = []
 endif
 
+if !exists('g:ocd_save_message')
+	let g:ocd_save_message = ''
+endif
+
 if !exists('g:ocd_save_exclude_git')
 	let g:ocd_save_exclude_git = v:false
 endif
@@ -65,9 +69,22 @@ endif
 " Plugin
 
 function! s:AddBufferAutoCmds(buffer_number)
+	if g:ocd_save_message == v:null
+		let silent = ' silent'
+		let	echo_saved = ''
+	else
+		if g:ocd_save_message == ''
+			let silent = ''
+			let	echo_saved = ''
+		else
+			let silent = ' silent'
+			let	echo_saved = '| echo "'..g:ocd_save_message..'"'
+		endif
+	endif
+
 	augroup OcdSave
-		execute 'autocmd! TextChanged <buffer='..a:buffer_number..'> update'
-		execute 'autocmd! InsertLeave <buffer='..a:buffer_number..'> update'
+		execute 'autocmd! TextChanged <buffer='..a:buffer_number..'> '..silent..' update'..echo_saved
+		execute 'autocmd! InsertLeave <buffer='..a:buffer_number..'> '..silent..' update'..echo_saved
 	augroup END
 endfunction
 
