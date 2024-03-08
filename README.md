@@ -44,10 +44,10 @@ These options should be set within the `init` function when listing ocd-save ins
 
 ```lua
 require("lazy").setup {
-	{ "shrpnsld/ocd-save.vim",
-		init = function()
-			vim.g.ocd_save_message = vim.v.null,
-		end },
+    { "shrpnsld/ocd-save.vim",
+        init = function()
+            vim.g.ocd_save_message = vim.v.null,
+        end },
 }
 ```
 
