@@ -38,6 +38,19 @@ If, for some reason, you want to turn off autosave on Git buffers, you can do so
 
 Also, ocd-save pairs well with the `noswapfile` option (`:h noswapfile`).
 
+### Note for [lazy.nvim](https://github.com/folke/lazy.nvim) users
+
+These options should be set within the `init` function when listing ocd-save inside the lazy.nvim setup:
+
+```lua
+require("lazy").setup {
+	{ "shrpnsld/ocd-save.vim",
+		init = function()
+			vim.g.ocd_save_message = vim.v.null,
+		end },
+}
+```
+
 ## Commands
 
 `:OcdSaveOn` – turn on for all buffers.

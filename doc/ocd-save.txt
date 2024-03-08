@@ -62,6 +62,18 @@ so by putting `let g:ocd_save_exclude_git = 0` into your Vim config.
 
 Also, ocd-save pairs well with the |noswapfile| option.
 
+------------------------------------------------------------------------------
+
+When using lazy.nvim, these options should be set within the `init` function
+when listing ocd-save inside the lazy.nvim setup:
+>
+  require("lazy").setup {
+      { "shrpnsld/ocd-save",
+          init = function()
+              vim.g.ocd_save_message = vim.v.null,
+          end },
+  }
+<
 ==============================================================================
 Commands                                                     *ocd-save-commands*
 
