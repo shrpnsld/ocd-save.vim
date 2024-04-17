@@ -56,12 +56,12 @@ if !exists('g:ocd_save_message')
 endif
 
 if !exists('g:ocd_save_exclude_git')
-	let g:ocd_save_exclude_git = v:false
+	let g:ocd_save_exclude_git = v:true
 endif
 
 let g:ocd_save_exclude += [function('s:HasEmptyName'), function('s:NotNormalBuffer'), function('s:IsReadOnly')]
 
-if !g:ocd_save_exclude_git
+if g:ocd_save_exclude_git
 	let g:ocd_save_exclude += [function('s:FileTypeIsGit')]
 endif
 

@@ -34,7 +34,7 @@ To change or suppress `"file 555L, 4567B written"` message, set variable `g:ocd_
 
 ### Other
 
-If, for some reason, you want to turn off autosave on Git buffers, you can do so by putting `let g:ocd_save_exclude_git = 0` into your Vim config.
+If you want to turn on autosave for Git buffers, you can do so by putting `let g:ocd_save_exclude_git = 0` into your Vim config.
 
 Also, ocd-save pairs well with the `noswapfile` option (`:h noswapfile`).
 
