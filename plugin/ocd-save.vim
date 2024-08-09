@@ -48,6 +48,31 @@ function! s:BufferMatchesExcludeList(buffer_number, predicates)
 	return v:false
 endfunction
 
+function! s:UpdateBuffer()
+	try
+		update
+	catch
+		echohl ErrorMsg | echom "ocd-save: failed to save buffer. reason '"..v:exception.."'" | echohl None
+	endtry
+endfunction
+
+function! s:SilentUpdateBuffer()
+	try
+		silent update
+	catch
+		echohl ErrorMsg | echom "ocd-save: failed to save buffer. reason '"..v:exception.."'" | echohl None
+	endtry
+endfunction
+
+function! s:UpdateBufferWithMesage(message)
+	try
+		silent update
+		echo a:message
+	catch
+		echohl ErrorMsg | echom "ocd-save: failed to save buffer. reason '"..v:exception.."'" | echohl None
+	endtry
+endfunction
+
 "
 " Configuration
 
@@ -73,22 +98,18 @@ endif
 " Plugin
 
 function! s:AddBufferAutoCmds(buffer_number)
+	let command = ''
 	if g:ocd_save_message == v:null
-		let silent = ' silent'
-		let	echo_saved = ''
+		let command = 'call s:SilentUpdateBuffer()'
+	elseif g:ocd_save_message == ''
+		let command = 'call s:UpdateBuffer()'
 	else
-		if g:ocd_save_message == ''
-			let silent = ''
-			let	echo_saved = ''
-		else
-			let silent = ' silent'
-			let	echo_saved = '| echo "'..g:ocd_save_message..'"'
-		endif
+		let command = 'call s:UpdateBufferWithMessage('..g:ocd_save_message..')'
 	endif
 
 	augroup OcdSave
-		execute 'autocmd! TextChanged <buffer='..a:buffer_number..'> '..silent..' update'..echo_saved
-		execute 'autocmd! InsertLeave <buffer='..a:buffer_number..'> '..silent..' update'..echo_saved
+		execute 'autocmd! TextChanged <buffer='..a:buffer_number..'> '..command
+		execute 'autocmd! InsertLeave <buffer='..a:buffer_number..'> '..command
 	augroup END
 endfunction
 
