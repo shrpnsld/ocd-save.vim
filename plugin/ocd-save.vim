@@ -25,6 +25,10 @@ function! s:IsReadOnly(buffer_number)
 	return getbufvar(a:buffer_number, '&readonly')
 endfunction
 
+function! s:FileIsNotWritable(buffer_number)
+	return !filewritable(bufname(a:buffer_number))
+endfunction
+
 function! s:NotNormalBuffer(buffer_number)
 	return getbufvar(a:buffer_number, '&buftype') !=# ''
 endfunction
@@ -59,7 +63,7 @@ if !exists('g:ocd_save_exclude_git')
 	let g:ocd_save_exclude_git = v:true
 endif
 
-let g:ocd_save_exclude += [function('s:HasEmptyName'), function('s:NotNormalBuffer'), function('s:IsReadOnly')]
+let g:ocd_save_exclude += [function('s:HasEmptyName'), function('s:NotNormalBuffer'), function('s:IsReadOnly'), function('s:FileIsNotWritable')]
 
 if g:ocd_save_exclude_git
 	let g:ocd_save_exclude += [function('s:FileTypeIsGit')]
