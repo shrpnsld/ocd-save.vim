@@ -2,7 +2,7 @@
 
 Save yourself from typing `:w<CR>` every time you edit a buffer in Vim, ocd-save will do that for you!
 
-ocd-save autosaves buffers that are listed (`:h buflisted`), non-readonly (`:h readonly`), and normal (`:h buftype`). When `filetype plugin on` is used (`:h add-filetype-plugin`), Git buffers such as commit and merge files, are not autosaved.
+ocd-save autosaves buffers that are listed (`:h buflisted`), non-readonly (`:h readonly`), writable (`:h filewritable`) and normal (`:h buftype`). When `filetype plugin on` is used (`:h add-filetype-plugin`), Git buffers such as commit and merge files, are not autosaved.
 
 ## Installation
 

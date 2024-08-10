@@ -25,9 +25,10 @@ Intro                                                           *ocd-save-intro*
 Save yourself from typing `:w<CR>` every time you edit a buffer in Vim, ocd-save
 will do that for you!
 
-ocd-save autosaves buffers that are |buflisted|, |noreadonly| and normal (|buftype|
-is `<empty>`). When `filetype plugin on` is used (|add-filetype-plugin|), Git
-buffers such as commit and merge files, are not autosaved.
+ocd-save autosaves buffers that are |buflisted|, |noreadonly|, |filewritable()| and
+normal (|buftype| is `<empty>`). When `filetype plugin on` is used
+(|add-filetype-plugin|), Git buffers such as commit and merge files, are not
+autosaved.
 
 ==============================================================================
 Configuration                                           *ocd-save-configuration*
